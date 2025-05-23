@@ -1,155 +1,80 @@
-import React, { useState, useEffect } from 'react';
-import { Factory } from 'lucide-react';
+import React, { useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { Factory, Menu, X } from 'lucide-react';
 
 const Navbar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState('home');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-
-      // Handle active section highlighting
-      const sections = ['home', 'about', 'products', 'gallery', 'applications', 'contact'];
-      let currentSection = 'home';
-
-      sections.forEach(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom >= 100) {
-            currentSection = section;
-          }
-        }
-      });
-
-      setActiveSection(currentSection);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
-
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      window.scrollTo({
-        top: element.offsetTop - 80,
-        behavior: 'smooth'
-      });
-      setMobileMenuOpen(false);
-    }
-  };
+  const navItems = [
+    { path: '/', label: 'Home' },
+    { path: '/about', label: 'About' },
+    { path: '/products', label: 'Products' },
+    { path: '/services', label: 'Services' },
+    { path: '/gallery', label: 'Gallery' },
+    { path: '/contact', label: 'Contact' }
+  ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-md' : 'bg-transparent'}`}>
+    <nav className="bg-white shadow-md fixed w-full z-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          <div className="flex items-center">
-            <a 
-              href="#home" 
-              onClick={(e) => {
-                e.preventDefault();
-                scrollToSection('home');
-              }}
-              className="flex items-center space-x-2"
-            >
-              <Factory size={32} className="text-red" />
-              <span className="text-xl font-bold">
-                <span className="text-red">MACKADO</span>
-                <span className="text-yellow">PLAST</span>
-              </span>
-            </a>
-          </div>
+          <Link to="/" className="flex items-center space-x-2">
+            <Factory size={32} className="text-red-600" />
+            <span className="text-xl font-bold">
+              <span className="text-red-600">DALLAS</span>
+              <span className="text-yellow-500">WALLCARE</span>
+            </span>
+          </Link>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex space-x-8">
-            {['Home', 'About', 'Products', 'Gallery', 'Applications', 'Contact'].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(item.toLowerCase());
-                }}
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
                 className={`font-medium transition-colors duration-300 ${
-                  activeSection === item.toLowerCase() 
-                    ? 'text-red' 
-                    : 'text-gray-800 hover:text-red'
+                  location.pathname === item.path 
+                    ? 'text-red-600' 
+                    : 'text-gray-800 hover:text-red-600'
                 }`}
               >
-                {item}
-              </a>
+                {item.label}
+              </Link>
             ))}
           </div>
 
           {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <button
-              onClick={toggleMobileMenu}
-              className="p-2 rounded-md focus:outline-none"
-            >
-              <svg
-                className="h-6 w-6 text-gray-800"
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                {mobileMenuOpen ? (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                ) : (
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 6h16M4 12h16M4 18h16"
-                  />
-                )}
-              </svg>
-            </button>
-          </div>
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden p-2"
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
-      </div>
 
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-white shadow-lg">
-          <div className="px-2 pt-2 pb-4 space-y-1">
-            {['Home', 'About', 'Products', 'Gallery', 'Applications', 'Contact'].map((item) => (
-              <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection(item.toLowerCase());
-                }}
-                className={`block px-3 py-2 rounded-md text-base font-medium ${
-                  activeSection === item.toLowerCase()
-                    ? 'bg-red text-white'
-                    : 'text-gray-800 hover:bg-gray-100'
-                }`}
-              >
-                {item}
-              </a>
-            ))}
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden bg-white border-t">
+            <div className="px-2 pt-2 pb-3 space-y-1">
+              {navItems.map((item) => (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`block px-3 py-2 rounded-md text-base font-medium ${
+                    location.pathname === item.path
+                      ? 'bg-red-600 text-white'
+                      : 'text-gray-800 hover:bg-red-50'
+                  }`}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </nav>
   );
 };

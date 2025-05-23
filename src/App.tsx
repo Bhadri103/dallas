@@ -1,40 +1,33 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import About from './components/About';
-import Products from './components/Products';
-import Gallery from './components/Gallery';
-import Applications from './components/Applications';
-import Contact from './components/Contact';
 import Footer from './components/Footer';
+import Home from './pages/Home';
+import About from './pages/About';
+import Products from './pages/Products';
+import Services from './pages/Services';
+import Gallery from './pages/Gallery';
+import Contact from './pages/Contact';
 import './App.css';
 
 function App() {
   return (
-    <div className="font-sans">
-      <Navbar />
-      <main>
-        <section id="home">
-          <Hero />
-        </section>
-        <section id="about" className="py-16 md:py-24">
-          <About />
-        </section>
-        <section id="products" className="py-16 md:py-24 bg-gray-50">
-          <Products />
-        </section>
-        <section id="gallery" className="py-16 md:py-24">
-          <Gallery />
-        </section>
-        <section id="applications" className="py-16 md:py-24 bg-gray-50">
-          <Applications />
-        </section>
-        <section id="contact" className="py-16 md:py-24">
-          <Contact />
-        </section>
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <div className="font-sans min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

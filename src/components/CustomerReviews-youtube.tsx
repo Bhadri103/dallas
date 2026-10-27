@@ -54,9 +54,9 @@ const CustomerReviews = () => {
         const windowHeight =
           window.innerHeight || document.documentElement.clientHeight;
 
-        if (rect.top <= windowHeight * 0.75) {
-          el.classList.add("visible");
-        }
+          const isVisible =
+            rect.top <= windowHeight * 0.85 && rect.bottom >= windowHeight * 0.1;
+          el.classList.toggle("visible", isVisible);
       });
     };
 
@@ -105,7 +105,7 @@ const CustomerReviews = () => {
       <span
         key={i}
         className={`text-lg ${
-          i < rating ? "text-yellow-400" : "text-gray-300"
+          i < rating ? "text-[#f5b301]" : "text-gray-300"
         }`}
       >
         ⭐

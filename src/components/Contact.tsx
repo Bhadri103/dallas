@@ -42,9 +42,9 @@ const Contact = () => {
           const windowHeight =
             window.innerHeight || document.documentElement.clientHeight;
 
-          if (rect.top <= windowHeight * 0.75) {
-            el.classList.add("visible");
-          }
+          const isVisible =
+            rect.top <= windowHeight * 0.85 && rect.bottom >= windowHeight * 0.1;
+          el.classList.toggle("visible", isVisible);
         }
       });
     };
@@ -186,28 +186,28 @@ const Contact = () => {
   ];
 
   return (
-    <div className="bg-gray-50 ">
-      <div className="container mx-auto px-2 sm:px-6 lg:px-8">
+    <div className="bg-white py-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-center text-gray-800 mb-5">
+          <h2 className="text-2xl md:text-3xl font-semibold text-center text-slate-950 mb-3">
             Get in Touch with
-            <span className="text-red-600"> Dallas Wallcare</span>
+            <span className="text-[#075eb3]"> Dallas Wallcare</span>
           </h2>
-         <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+         <p className="text-base text-slate-600 max-w-3xl mx-auto">
               Have questions or need help? We're here for you.
             </p>
          
         </div>
 
         <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 items-stretch">
-          <div className="animate-on-scroll bg-white rounded-xl shadow-xl p-8 h-full order-2 lg:order-1">
-            <h3 className="text-2xl font-bold mb-6 text-gray-700">
+          <div className="animate-on-scroll bg-white rounded-xl border border-blue-100 shadow-[0_14px_40px_rgba(7,94,179,0.08)] p-8 h-full order-2 lg:order-1">
+            <h3 className="text-xl font-semibold mb-6 text-slate-950">
               Contact Information
             </h3>
             <div className="space-y-5">
               <div className="flex items-start">
-                <div className="flex-shrink-0 bg-red-100 p-3 rounded-full mr-4">
-                  <MapPin size={22} className="text-red-600" />
+                <div className="flex-shrink-0 bg-blue-50 p-3 rounded-lg mr-4">
+                  <MapPin size={22} className="text-[#075eb3]" />
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-800 mb-1">
@@ -228,12 +228,12 @@ const Contact = () => {
               </div>
 
               <div className="flex items-start">
-                <div className="flex-shrink-0 bg-red-100 p-3 rounded-full mr-4">
-                  <Phone size={22} className="text-red-600" />
+                <div className="flex-shrink-0 bg-blue-50 p-3 rounded-lg mr-4">
+                  <Phone size={22} className="text-[#075eb3]" />
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-800 mb-1">Phone</h4>
-                  <p className="text-gray-600 hover:text-red-600">
+                  <p className="text-gray-600 hover:text-[#075eb3]">
                     Mobile: +91 9342216880
                     <br />
                     Toll Free: 1800 572 4998
@@ -242,12 +242,12 @@ const Contact = () => {
               </div>
 
               <div className="flex items-start">
-                <div className="flex-shrink-0 bg-red-100 p-3 rounded-full mr-4">
-                  <Mail size={22} className="text-red-600" />
+                <div className="flex-shrink-0 bg-blue-50 p-3 rounded-lg mr-4">
+                  <Mail size={22} className="text-[#075eb3]" />
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-800 mb-1">Email</h4>
-                  <p className="text-gray-600 hover:text-red-600">
+                  <p className="text-gray-600 hover:text-[#075eb3]">
                     info@dallaswallcare.com
                     <br />
                     magesh@mcglasgo.com
@@ -261,15 +261,15 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-800 mb-1">Website</h4>
-                  <p className="text-gray-600 hover:text-red-600">
+                  <p className="text-gray-600 hover:text-[#075eb3]">
                     www.dallaswallcare.com
                   </p>
                 </div>
               </div> */}
 
               <div className="flex items-start">
-                <div className="flex-shrink-0 bg-red-100 p-3 rounded-full mr-4">
-                  <Clock size={22} className="text-red-600" />
+                <div className="flex-shrink-0 bg-blue-50 p-3 rounded-lg mr-4">
+                  <Clock size={22} className="text-[#075eb3]" />
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-800 mb-1">
@@ -286,8 +286,8 @@ const Contact = () => {
               </div>
             </div>
           </div>
-          <div className="animate-on-scroll bg-white rounded-xl shadow-xl p-8 h-full order-1 lg:order-2">
-            <h3 className="text-2xl font-bold mb-2 text-gray-700">
+          <div className="animate-on-scroll bg-white rounded-xl border border-blue-100 shadow-[0_14px_40px_rgba(7,94,179,0.08)] p-8 h-full order-1 lg:order-2">
+            <h3 className="text-xl font-semibold mb-2 text-slate-950">
               Send Us a Message
             </h3>
             <p className="text-sm text-gray-500 mb-6">
@@ -331,7 +331,7 @@ const Contact = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    className={`w-full px-4 py-2.5 border rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 ${
+                    className={`w-full px-4 py-2.5 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 ${
                       errors.name ? "border-red-500" : "border-gray-300"
                     }`}
                     placeholder="John Doe"
@@ -353,7 +353,7 @@ const Contact = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    className={`w-full px-4 py-2.5 border rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 ${
+                    className={`w-full px-4 py-2.5 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 ${
                       errors.email ? "border-red-500" : "border-gray-300"
                     }`}
                     placeholder="john@example.com"
@@ -378,7 +378,7 @@ const Contact = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
                     placeholder="+91 XXXXX XXXXX"
                   />
                 </div>
@@ -394,7 +394,7 @@ const Contact = () => {
                     name="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    className="w-full px-4 py-2.5 border border-gray-300 rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 bg-white"
+                    className="w-full px-4 py-2.5 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 bg-white"
                   >
                     <option value="">Select a subject</option>
                     {businessInquirySubjects.map((subject) => (
@@ -419,7 +419,7 @@ const Contact = () => {
                   value={formData.message}
                   onChange={handleChange}
                   rows={5}
-                  className={`w-full px-4 py-2.5 border rounded-md shadow-sm focus:ring-red-500 focus:border-red-500 ${
+                  className={`w-full px-4 py-2.5 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 ${
                     errors.message ? "border-red-500" : "border-gray-300"
                   }`}
                   placeholder="Type your message here... (min. 10 characters)"
@@ -431,7 +431,7 @@ const Contact = () => {
 
               <button
                 type="submit"
-                className="w-full bg-red-600 hover:bg-red-700 text-white font-semibold px-6 py-3 rounded-md shadow-md transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+                className="w-full bg-[#075eb3] hover:bg-[#064f9c] text-white font-semibold px-6 py-3 rounded-lg shadow-md transition duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
                 Send Message
               </button>
@@ -440,7 +440,7 @@ const Contact = () => {
         </div>
         <section>
           <div className="mt-8 pt-6 border-t border-gray-200">
-            <h2 className="text-3xl font-bold text-center mb-10 text-gray-800">
+            <h2 className="text-2xl font-semibold text-center mb-8 text-slate-950">
               Find Us On Map
             </h2>
 
@@ -459,7 +459,7 @@ const Contact = () => {
           </div>
         </section>
         <section className="mt-16 pt-12 border-t border-gray-200">
-          <h2 className="text-3xl font-bold text-center mb-10 text-gray-800">
+          <h2 className="text-2xl font-semibold text-center mb-8 text-slate-950">
             Our Service Areas
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -469,7 +469,7 @@ const Contact = () => {
                 className="animate-on-scroll bg-white p-6 rounded-lg shadow-lg text-center hover:shadow-xl transition-shadow"
                 style={{ transitionDelay: `${index * 0.1}s` }}
               >
-                <Globe className="w-12 h-12 text-red-600 mx-auto mb-4" />
+                <Globe className="w-10 h-10 text-[#075eb3] mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-gray-700 mb-2">
                   {item.area}
                 </h3>
@@ -480,7 +480,7 @@ const Contact = () => {
         </section>
 
         <section className="mt-16 pt-12 border-t border-gray-200">
-          <h2 className="text-3xl font-bold text-center mb-4 text-gray-800">
+          <h2 className="text-2xl font-semibold text-center mb-4 text-slate-950">
             Our Certifications & Commitment
           </h2>
           <p className="text-center text-gray-600 mb-10 max-w-3xl mx-auto">
@@ -498,7 +498,7 @@ const Contact = () => {
                 style={{ transitionDelay: `${index * 0.1}s` }}
               >
                 <div className="flex items-center space-x-4 mb-4">
-                  <item.icon className="w-10 h-10 text-red-600 flex-shrink-0" />
+                  <item.icon className="w-10 h-10 text-[#075eb3] flex-shrink-0" />
                   <h3 className="text-lg font-semibold text-gray-800">
                     {item.title}
                   </h3>

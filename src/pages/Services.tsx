@@ -1,346 +1,191 @@
 import React from "react";
 import {
+  Award,
+  Building,
+  HeartHandshake,
   MapPin,
   Phone,
-  Users,
-  Award,
   Shield,
+  Users,
   Wrench,
-  Building,
-  Heart,
-  UserPlus,
-  CheckCircle,
-  Star,
-  Target,
-  Zap,
 } from "lucide-react";
-const serviceSlides = [
+import serviceBanner from "../images/Banner.jpeg";
+import PageBanner from "../components/PageBanner";
+
+const serviceSections = [
   {
-    image:
-      "https://images.pexels.com/photos/3862130/pexels-photo-3862130.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
-    title: "Professional Installation",
-    description: "Expert application services for all our products",
+    title: "Factory Services",
+    icon: Building,
+    description: "Direct product access and factory-backed support.",
+    items: [
+      {
+        icon: MapPin,
+        title: "Visit Factory",
+        description: "Tour our state-of-the-art manufacturing facility near Coimbatore.",
+      },
+      {
+        icon: Building,
+        title: "Buy Products",
+        description: "Direct factory-to-customer purchasing.",
+      },
+      {
+        icon: Wrench,
+        title: "Get Service",
+        description: "Professional technical support and consultation.",
+      },
+    ],
   },
   {
-    image:
-      "https://images.pexels.com/photos/8961065/pexels-photo-8961065.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
     title: "Technical Support",
-    description: "Dedicated assistance throughout your project",
+    icon: Wrench,
+    description: "On-site guidance for better application and performance.",
+    items: [
+      {
+        icon: Phone,
+        title: "Free On-Site Support",
+        description: "Professional guidance at construction sites.",
+        highlight: "FREE",
+      },
+      {
+        icon: Users,
+        title: "Labor Service",
+        description: "Skilled application assistance.",
+      },
+      {
+        icon: Award,
+        title: "Engineer Consultation",
+        description: "Scientific and practical guidance at every stage.",
+      },
+      {
+        icon: Building,
+        title: "Custom Solutions",
+        description: "Tailored solutions for specific project requirements.",
+      },
+    ],
   },
   {
-    image:
-      "https://images.pexels.com/photos/7218013/pexels-photo-7218013.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1080&fit=crop",
-    title: "Quality Assurance",
-    description: "Rigorous testing and monitoring for optimal results",
+    title: "After-Sales Support",
+    icon: Shield,
+    description: "Support that continues after product delivery.",
+    items: [
+      {
+        icon: Shield,
+        title: "Lifetime Guarantee",
+        description: "On waterproof wall plaster products.",
+        highlight: "LIFETIME",
+      },
+      {
+        icon: Award,
+        title: "Project Monitoring",
+        description: "Dedicated team tracking completed projects.",
+      },
+      {
+        icon: Phone,
+        title: "Technical Assistance",
+        description: "Expert support for optimal performance.",
+      },
+      {
+        icon: Wrench,
+        title: "Maintenance-Free Solutions",
+        description: "Products designed for long-term reliability.",
+      },
+    ],
+  },
+  {
+    title: "Dealership Opportunities",
+    icon: HeartHandshake,
+    description: "Partner with Dallas Wallcare for regional growth.",
+    items: [
+      {
+        icon: HeartHandshake,
+        title: "Join Dealership",
+        description: "Partner with Dallas Wallcare for business opportunities.",
+      },
+      {
+        icon: Award,
+        title: "Training Programs",
+        description: "Comprehensive product and application training.",
+      },
+      {
+        icon: Building,
+        title: "Marketing Support",
+        description: "Brand promotion and technical literature.",
+      },
+      {
+        icon: MapPin,
+        title: "Territory Rights",
+        description: "Exclusive dealership territories available.",
+      },
+    ],
   },
 ];
-const Slider = ({ slides }) => {
-  const [currentSlide, setCurrentSlide] = React.useState(0);
-
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [slides.length]);
-
-  return (
-    <div className="relative h-96 overflow-hidden bg-gradient-to-r from-red-900 to-red-700">
-      {slides.map(
-        (
-          slide: {
-            image: any;
-            title:
-              | string
-              | number
-              | boolean
-              | React.ReactElement<
-                  any,
-                  string | React.JSXElementConstructor<any>
-                >
-              | Iterable<React.ReactNode>
-              | React.ReactPortal
-              | null
-              | undefined;
-            description:
-              | string
-              | number
-              | boolean
-              | React.ReactElement<
-                  any,
-                  string | React.JSXElementConstructor<any>
-                >
-              | Iterable<React.ReactNode>
-              | React.ReactPortal
-              | null
-              | undefined;
-          },
-          index: React.Key | null | undefined
-        ) => (
-          <div
-            key={index}
-            className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === currentSlide ? "opacity-100" : "opacity-0"
-            }`}
-          >
-            <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${slide.image})` }}
-            >
-              <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-            </div>
-            <div className="relative z-10 flex items-center justify-center h-full text-white text-center px-4">
-              <div>
-                <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                  {slide.title}
-                </h2>
-                <p className="text-xl md:text-2xl">{slide.description}</p>
-              </div>
-            </div>
-          </div>
-        )
-      )}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-        {slides.map(
-          (
-            _: any,
-            index:
-              | string
-              | number
-              | bigint
-              | ((prevState: number) => number)
-              | null
-              | undefined
-          ) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-colors ${
-                index === currentSlide ? "bg-white" : "bg-white bg-opacity-50"
-              }`}
-            />
-          )
-        )}
-      </div>
-    </div>
-  );
-};
 
 const Services = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* <Slider slides={serviceSlides} /> */}
+    <main className="min-h-screen bg-white">
+      <PageBanner
+        eyebrow="SERVICES"
+        title="Factory Support, Technical Guidance, and Dealer Partnership"
+        description="Discover our facilities, professional support, and service programs built around high-performance Dallas Wallcare products."
+        image={serviceBanner}
+        imageAlt="Dallas Wallcare service products"
+      />
 
-      {/* Main Header */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Our <span className="text-[#E63946]">Services</span>
-          </h2>
-          <p className="text-xl text-gray-600">
-            Discover our cutting-edge facilities, innovative processes, and
-            top-quality products.
-          </p>
-        </div>
-        <div className="mb-16">
-          <div className="bg-white rounded-2xl shadow-xl p-8 border-l-4 border-red-600">
-            <div className="flex items-center mb-6">
-              <Building className="w-8 h-8 text-red-600 mr-3" />
-              <h3 className="text-2xl font-bold text-gray-800">
-                Factory Services
-              </h3>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <ServiceItem
-                icon={<MapPin className="w-6 h-6" />}
-                title="Visit Factory"
-                description="Tour our state-of-the-art manufacturing facility near Coimbatore"
-                highlight={undefined}
-              />
-              <ServiceItem
-                icon={<Building className="w-6 h-6" />}
-                title="Buy Products"
-                description="Direct factory-to-customer purchasing"
-                highlight={undefined}
-              />
-              <ServiceItem
-                icon={<Wrench className="w-6 h-6" />}
-                title="Get Service"
-                description="Professional technical support and consultation"
-                highlight={undefined}
-              />
-            </div>
-          </div>
-        </div>
+      <section className="mx-auto max-w-7xl space-y-6 px-4 py-10">
+        {serviceSections.map((section) => {
+          const SectionIcon = section.icon;
+          return (
+            <article
+              key={section.title}
+              className="scroll-reveal rounded-xl border border-blue-100 bg-white p-6 shadow-[0_14px_40px_rgba(7,94,179,0.08)]"
+            >
+              <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 text-[#075eb3]">
+                    <SectionIcon size={26} />
+                  </div>
+                  <div>
+                    <h2 className="text-xl font-semibold text-slate-950">
+                      {section.title}
+                    </h2>
+                    <p className="mt-1 text-sm text-slate-600">
+                      {section.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
 
-        {/* Technical Support Section */}
-        <div className="mb-16">
-          <div className="bg-white rounded-2xl shadow-xl p-8 border-l-4 border-green-600">
-            <div className="flex items-center mb-6">
-              <Wrench className="w-8 h-8 text-green-600 mr-3" />
-              <h3 className="text-2xl font-bold text-gray-800">
-                Technical Support
-              </h3>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <ServiceItem
-                icon={<Phone className="w-6 h-6" />}
-                title="Free On-Site Support"
-                description="Professional guidance at construction sites"
-                highlight="FREE"
-              />
-              <ServiceItem
-                icon={<Users className="w-6 h-6" />}
-                title="Labor Service"
-                description="Skilled application assistance"
-                highlight={undefined}
-              />
-              <ServiceItem
-                icon={<Award className="w-6 h-6" />}
-                title="Engineer Consultation"
-                description="Scientific and practical guidance at every stage"
-                highlight={undefined}
-              />
-              <ServiceItem
-                icon={<Building className="w-6 h-6" />}
-                title="Custom Solutions"
-                description="Tailored solutions for specific project requirements"
-                highlight={undefined}
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* After-Sales Support Section */}
-        <div className="mb-16">
-          <div className="bg-white rounded-2xl shadow-xl p-8 border-l-4 border-purple-600">
-            <div className="flex items-center mb-6">
-              <Shield className="w-8 h-8 text-purple-600 mr-3" />
-              <h3 className="text-2xl font-bold text-gray-800">
-                After-Sales Support
-              </h3>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <ServiceItem
-                icon={<Shield className="w-6 h-6" />}
-                title="Lifetime Guarantee"
-                description="On waterproof wall plaster products"
-                highlight="LIFETIME"
-              />
-              <ServiceItem
-                icon={<Award className="w-6 h-6" />}
-                title="Project Monitoring"
-                description="Dedicated team tracking completed projects"
-                highlight={undefined}
-              />
-              <ServiceItem
-                icon={<Phone className="w-6 h-6" />}
-                title="Technical Assistance"
-                description="Expert support for optimal performance"
-                highlight={undefined}
-              />
-              <ServiceItem
-                icon={<Wrench className="w-6 h-6" />}
-                title="Maintenance-Free Solutions"
-                description="Products designed for long-term reliability"
-                highlight={undefined}
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Dealership Opportunities Section */}
-        <div className="mb-16">
-          <div className="bg-gradient-to-r from-orange-500 to-red-500 rounded-2xl shadow-xl p-8 text-white">
-            <div className="flex items-center mb-6">
-              <Heart className="w-8 h-8 text-white mr-3" />
-              <h3 className="text-2xl font-bold">Dealership Opportunities</h3>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <ServiceItem
-                icon={<Heart className="w-6 h-6" />}
-                title="Join Dealership"
-                description="Partner with Dallas Wallcare for business opportunities"
-                isDark={true}
-                highlight={undefined}
-              />
-              <ServiceItem
-                icon={<Award className="w-6 h-6" />}
-                title="Training Programs"
-                description="Comprehensive product and application training"
-                isDark={true}
-                highlight={undefined}
-              />
-              <ServiceItem
-                icon={<Building className="w-6 h-6" />}
-                title="Marketing Support"
-                description="Brand promotion and technical literature"
-                isDark={true}
-                highlight={undefined}
-              />
-              <ServiceItem
-                icon={<MapPin className="w-6 h-6" />}
-                title="Territory Rights"
-                description="Exclusive dealership territories available"
-                isDark={true}
-                highlight={undefined}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const ServiceItem = ({
-  icon,
-  title,
-  description,
-  highlight,
-  isDark = false,
-}) => {
-  return (
-    <div
-      className={`p-6 rounded-xl transition-all duration-300 hover:scale-105 ${
-        isDark
-          ? "bg-white bg-opacity-10 hover:bg-opacity-20"
-          : "bg-gray-50 hover:bg-gray-100 hover:shadow-lg"
-      }`}
-    >
-      {highlight && (
-        <div
-          className={`inline-block px-3 py-1 rounded-full text-xs font-bold mb-3 ${
-            highlight === "FREE"
-              ? "bg-green-500 text-white"
-              : "bg-yellow-500 text-black"
-          }`}
-        >
-          {highlight}
-        </div>
-      )}
-      <div
-        className={`flex items-center mb-3 ${
-          isDark ? "text-white" : "text-red-600"
-        }`}
-      >
-        {icon}
-        <h4
-          className={`ml-3 font-semibold ${
-            isDark ? "text-white" : "text-gray-800"
-          }`}
-        >
-          {title}
-        </h4>
-      </div>
-      <p
-        className={`text-sm leading-relaxed ${
-          isDark ? "text-gray-200" : "text-gray-600"
-        }`}
-      >
-        {description}
-      </p>
-    </div>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                {section.items.map((item) => {
+                  const ItemIcon = item.icon;
+                  return (
+                    <div
+                      key={item.title}
+                      className="scroll-reveal rounded-xl border border-slate-100 bg-white p-5 transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-md"
+                    >
+                      {item.highlight && (
+                        <span className="mb-3 inline-flex rounded-md bg-[#075eb3] px-3 py-1 text-xs font-semibold text-white">
+                          {item.highlight}
+                        </span>
+                      )}
+                      <div className="mb-3 flex items-center gap-3 text-[#075eb3]">
+                        <ItemIcon size={22} />
+                        <h3 className="text-base font-semibold text-slate-950">
+                          {item.title}
+                        </h3>
+                      </div>
+                      <p className="text-sm leading-relaxed text-slate-600">
+                        {item.description}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </article>
+          );
+        })}
+      </section>
+    </main>
   );
 };
 

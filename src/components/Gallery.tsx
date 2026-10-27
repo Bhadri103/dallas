@@ -218,9 +218,9 @@ const Gallery = () => {
         const windowHeight =
           window.innerHeight || document.documentElement.clientHeight;
 
-        if (rect.top <= windowHeight * 0.75) {
-          el.classList.add("visible");
-        }
+        const isVisible =
+          rect.top <= windowHeight * 0.85 && rect.bottom >= windowHeight * 0.1;
+        el.classList.toggle("visible", isVisible);
       });
     };
 
@@ -273,7 +273,8 @@ const Gallery = () => {
       : galleryImages.filter((img) => img.category === filter);
 
   return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div className="bg-white">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <style jsx>{`
         .animate-on-scroll {
           opacity: 0;
@@ -315,17 +316,17 @@ const Gallery = () => {
           transform: translateX(-50%);
           width: 80px;
           height: 4px;
-          background: linear-gradient(90deg, #dc2626, #ef4444);
+          background: linear-gradient(90deg, #075eb3, #0b84d8);
           border-radius: 2px;
         }
       `}</style>
       <div className="text-center mb-12">
-        <h2 className="text-3xl md:text-4xl font-bold mb-4">
-          Our <span className="text-[#E63946]"> Gallery</span>
+        <h2 className="text-2xl md:text-3xl font-semibold mb-3 text-slate-950">
+          Our <span className="text-[#075eb3]"> Gallery</span>
         </h2>
-        <p className="text-xl text-gray-600">
+        <p className="text-base text-slate-600">
           Backed by McGlasgo Research, Dallas completed over{" "}
-          <strong className="text-red-600">15,000 projects</strong> across South
+          <strong className="text-[#075eb3]">15,000 projects</strong> across South
           India—including from Thiruvananthapuram to Kannur in Kerala, and
           throughout Karnataka and Tamil Nadu.{" "}
         </p>
@@ -334,22 +335,22 @@ const Gallery = () => {
       <div className="text-center mb-16">
         <div className="p-8 mb-8 max-w-5xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-white rounded-lg p-6 shadow-md">
-              <div className="text-3xl font-bold text-red-600 mb-2">
+            <div className="bg-white rounded-xl border border-blue-100 p-6 shadow-sm">
+              <div className="text-2xl font-semibold text-[#075eb3] mb-2">
                 15,000+
               </div>
               <div className="text-gray-700 font-medium">
                 Residential & Commercial Structures
               </div>
             </div>
-            <div className="bg-white rounded-lg p-6 shadow-md">
-              <div className="text-3xl font-bold text-red-600 mb-2">150+</div>
+            <div className="bg-white rounded-xl border border-blue-100 p-6 shadow-sm">
+              <div className="text-2xl font-semibold text-[#075eb3] mb-2">150+</div>
               <div className="text-gray-700 font-medium">
                 Projects with Dallas Wallcare Name
               </div>
             </div>
-            <div className="bg-white rounded-lg p-6 shadow-md">
-              <div className="text-lg font-bold text-red-600 mb-2">
+            <div className="bg-white rounded-xl border border-blue-100 p-6 shadow-sm">
+              <div className="text-lg font-semibold text-[#075eb3] mb-2">
                 Coverage
               </div>
               <div className="text-gray-700 font-medium">
@@ -383,8 +384,8 @@ const Gallery = () => {
         </div>
 
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4 relative z-10">
-         Our Recent <span className="text-red-600">Projects</span>
+          <h2 className="text-2xl md:text-3xl font-semibold text-slate-950 mb-4 relative z-10">
+         Our Recent <span className="text-[#075eb3]">Projects</span>
           </h2>
         
         </div>
@@ -396,9 +397,9 @@ const Gallery = () => {
       <div className="flex flex-wrap justify-center gap-3 mb-12">
         <button
           onClick={() => setFilter("all")}
-          className={`px-6 py-3 rounded-full text-sm font-medium transition-all duration-300 shadow-md hover:shadow-lg ${
+          className={`px-5 py-2.5 rounded-lg text-sm font-medium transition-all duration-300 shadow-sm hover:shadow-md ${
             filter === "all"
-              ? "bg-gradient-to-r from-red-600 to-red-700 text-white transform scale-105"
+              ? "bg-[#075eb3] text-white"
               : "bg-white text-gray-800 hover:bg-gray-50 border border-gray-200"
           }`}
         >
@@ -418,9 +419,9 @@ const Gallery = () => {
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`px-6 py-3 rounded-full text-sm font-medium capitalize transition-all duration-300 shadow-md hover:shadow-lg ${
+              className={`px-5 py-2.5 rounded-lg text-sm font-medium capitalize transition-all duration-300 shadow-sm hover:shadow-md ${
                 filter === cat
-                  ? "bg-gradient-to-r from-red-600 to-red-700 text-white transform scale-105"
+                  ? "bg-[#075eb3] text-white"
                   : "bg-white text-gray-800 hover:bg-gray-50 border border-gray-200"
               }`}
             >
@@ -467,14 +468,14 @@ const Gallery = () => {
       {selectedImage !== null && (
         <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4">
           <button
-            className="absolute top-4 right-4 text-white text-4xl hover:text-red-400 transition-colors duration-200 z-10"
+            className="absolute top-4 right-4 text-white text-3xl hover:text-blue-300 transition-colors duration-200 z-10"
             onClick={() => setSelectedImage(null)}
           >
             ×
           </button>
 
           <button
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-4xl hover:text-red-400 transition-colors duration-200 z-10 bg-black/30 rounded-full w-12 h-12 flex items-center justify-center"
+            className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl hover:text-blue-300 transition-colors duration-200 z-10 bg-black/30 rounded-full w-12 h-12 flex items-center justify-center"
             onClick={() =>
               setSelectedImage((prev) =>
                 prev !== null
@@ -507,7 +508,7 @@ const Gallery = () => {
           </div>
 
           <button
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-4xl hover:text-red-400 transition-colors duration-200 z-10 bg-black/30 rounded-full w-12 h-12 flex items-center justify-center"
+            className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl hover:text-blue-300 transition-colors duration-200 z-10 bg-black/30 rounded-full w-12 h-12 flex items-center justify-center"
             onClick={() =>
               setSelectedImage((prev) =>
                 prev !== null ? (prev + 1) % galleryImages.length : null
@@ -520,6 +521,7 @@ const Gallery = () => {
       )}
 
      
+    </div>
     </div>
   );
 };

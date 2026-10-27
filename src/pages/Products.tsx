@@ -1,28 +1,18 @@
 import React from "react";
-import Slider from "../components/Slider";
 import ProductsComponent from "../components/Products";
-
-const productSlides = [
-  {
-    image: "https://images.pexels.com/photos/2760242/pexels-photo-2760242.jpeg",
-    title: "Dallas Wall Plast",
-    description: "India's 1st Premium Dampproof Plaster",
-  },
-  {
-    image: "https://images.pexels.com/photos/1329061/pexels-photo-1329061.jpeg",
-    title: "Dallas Groutt",
-    description: "Advanced Dampproof Grouting Solution",
-  },
-  {
-    image: "https://images.pexels.com/photos/6474041/pexels-photo-6474041.jpeg",
-    title: "Dallas Supreme White",
-    description: "Premium Dampproof Wallputty",
-  },
-];
+import PageBanner from "../components/PageBanner";
+import bannerImage from "../images/Banner.jpeg";
 
 const Products = () => {
   return (
-    <div>
+    <div className="bg-white">
+      <PageBanner
+        eyebrow="PRODUCTS"
+        title="High-Performance Wallcare Products for Lasting Structures"
+        description="Browse Dallas, Ceramikha, Matrix, and Dr. Proof product solutions for modern construction needs."
+        image={bannerImage}
+        imageAlt="Dallas Wallcare product range banner"
+      />
       <ProductsComponent />
     </div>
   );

@@ -35,8 +35,9 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
   animation = 'fadeUp'
 }) => {
   const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
+    triggerOnce: false,
+    threshold: 0.14,
+    rootMargin: '0px 0px -8% 0px',
   });
 
   return (

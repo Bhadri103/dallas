@@ -38,9 +38,9 @@ const About = () => {
         const windowHeight =
           window.innerHeight || document.documentElement.clientHeight;
 
-        if (rect.top <= windowHeight * 0.75) {
-          el.classList.add("visible");
-        }
+        const isVisible =
+          rect.top <= windowHeight * 0.85 && rect.bottom >= windowHeight * 0.1;
+        el.classList.toggle("visible", isVisible);
       });
     };
 
@@ -90,27 +90,27 @@ const About = () => {
   ];
 
   return (
-    <div className="bg-gray-50">
-      <section className="py-16">
+    <div className="bg-white">
+      <section className="py-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              About <span className="text-[#E63946]"> Dallas Wallcare</span>
+            <h2 className="text-2xl md:text-3xl font-semibold mb-3 text-slate-950">
+              About <span className="text-[#075eb3]"> Dallas Wallcare</span>
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-base text-slate-600">
               The Legacy Behind Dallas Wallcare: A Story of Grit and Growth
             </p>
           </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
             <div className="animate-on-scroll">
               <div className="relative">
-                <div className="absolute -top-4 -left-4 w-24 h-24 bg-yellow-400 rounded-tl-3xl opacity-20"></div>
+                <div className="absolute -top-4 -left-4 w-24 h-24 bg-blue-200 rounded-tl-2xl opacity-60"></div>
                 <img
                   src="https://images.pexels.com/photos/1267338/pexels-photo-1267338.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=2"
                   alt="Historical Mettupalayam Market"
-                  className="w-full h-96 object-cover rounded-lg shadow-xl relative z-10"
+                  className="w-full h-80 object-cover rounded-xl shadow-lg relative z-10"
                 />
-                <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-red-500 rounded-br-3xl opacity-20"></div>
+                <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-[#075eb3] rounded-br-2xl opacity-15"></div>
               </div>
             </div>
 
@@ -118,7 +118,7 @@ const About = () => {
               className="animate-on-scroll"
               style={{ transitionDelay: "0.2s" }}
             >
-              <p className="text-gray-700 mb-6 leading-relaxed text-lg">
+              <p className="text-slate-700 mb-5 leading-relaxed text-base">
                 Long before Coimbatore—one of India's foremost industrial
                 hubs—emerged as a center for construction-oriented
                 manufacturing, the roots of Dallas Wallcare were quietly taking
@@ -126,7 +126,7 @@ const About = () => {
                 Mettupalayam, a historically rich town near Coimbatore.
               </p>
 
-              <p className="text-gray-700 mb-6 leading-relaxed text-lg">
+              <p className="text-slate-700 mb-5 leading-relaxed text-base">
                 It was here that a determined individual, with no formal
                 education or support system, began his journey by trading
                 vegetables in the local market. This remarkable man made the
@@ -139,14 +139,14 @@ const About = () => {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="animate-on-scroll order-2 lg:order-1">
-              <p className="text-gray-700 mb-6 leading-relaxed text-lg">
+              <p className="text-slate-700 mb-5 leading-relaxed text-base">
                 Fueled by deep faith, sincerity, and a tireless spirit, he
                 overcame every challenge—despite lacking financial resources,
                 academic credentials, or powerful connections. He stood strong,
                 like a rock amidst a raging sea.
               </p>
 
-              <p className="text-gray-700 mb-6 leading-relaxed text-lg">
+              <p className="text-slate-700 mb-5 leading-relaxed text-base">
                 What started as a modest trading venture eventually became the
                 foundation of KKM—an identity forged through resilience,
                 principles, and perseverance. Today, that legacy has grown into
@@ -154,8 +154,8 @@ const About = () => {
                 innovation in the construction materials industry.
               </p>
 
-              <div className="bg-gradient-to-r from-red-500 to-yellow-500 p-6 rounded-lg text-white">
-                <p className="text-lg font-medium">
+              <div className="bg-gradient-to-r from-[#075eb3] to-[#0b84d8] p-6 rounded-xl text-white shadow-lg">
+                <p className="text-base font-medium">
                   The same indomitable spirit that empowered{" "}
                   <strong>K.K. Mathan, the Legend</strong>, now propels the
                   growth of Dallas Wallcare, inspiring advancements in
@@ -169,12 +169,12 @@ const About = () => {
                 <img
                   src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=2"
                   alt="K.K. Mathan Legacy"
-                  className="w-full h-96 object-cover rounded-lg shadow-xl"
+                  className="w-full h-80 object-cover rounded-xl shadow-lg"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent rounded-lg"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#082f5f]/70 to-transparent rounded-xl"></div>
                 <div className="absolute bottom-6 left-6 text-white">
-                  <h3 className="text-2xl font-bold">K.K. Mathan</h3>
-                  <p className="text-lg opacity-90">The Visionary Founder</p>
+                  <h3 className="text-xl font-semibold">K.K. Mathan</h3>
+                  <p className="text-base opacity-90">The Visionary Founder</p>
                 </div>
               </div>
             </div>
@@ -182,17 +182,17 @@ const About = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-white">
+      <section className="py-14 bg-white">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-center mb-16 text-gray-800">
+          <h2 className="text-2xl md:text-3xl font-semibold text-center mb-10 text-slate-950">
             Our Vision & Mission
           </h2>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
             <AnimatedSection>
               <div className="flex h-full">
-                <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-8 shadow-xl flex flex-col transition-transform transform hover:scale-[1.02] w-full">
-                  <Eye className="w-12 h-12 text-red-600 mb-6" />
-                  <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                <div className="bg-gradient-to-br from-blue-50 to-white rounded-xl border border-blue-100 p-7 shadow-md flex flex-col transition-transform transform hover:-translate-y-1 w-full">
+                  <Eye className="w-10 h-10 text-[#075eb3] mb-5" />
+                  <h3 className="text-xl font-semibold text-slate-950 mb-4">
                     Our Vision
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
@@ -211,9 +211,9 @@ const About = () => {
 
             <AnimatedSection delay={0.2}>
               <div className="flex h-full">
-                <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-2xl p-8 shadow-xl flex flex-col transition-transform transform hover:scale-[1.02] w-full">
-                  <Target className="w-12 h-12 text-yellow-600 mb-6" />
-                  <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                <div className="bg-gradient-to-br from-blue-50 to-white rounded-xl border border-blue-100 p-7 shadow-md flex flex-col transition-transform transform hover:-translate-y-1 w-full">
+                  <Target className="w-10 h-10 text-[#075eb3] mb-5" />
+                  <h3 className="text-xl font-semibold text-slate-950 mb-4">
                     Our Mission
                   </h3>
                   <p className="text-gray-700 leading-relaxed mb-4">
@@ -226,7 +226,7 @@ const About = () => {
                   </p>
                   <p className="text-gray-700 leading-relaxed">
                     Builders across India are in search of a lifetime-guaranteed
-                    solution—and <span className="text-red-600">Dallas</span>{" "}
+                    solution—and <span className="text-[#075eb3]">Dallas</span>{" "}
                     delivers with an advanced formulation that ensures
                     exceptional durability and long-term structural protection.
                   </p>
@@ -237,12 +237,12 @@ const About = () => {
           </div>
         </div>
       </section>
-      <section className="py-20 bg-gradient-to-b from-white to-blue-50 relative overflow-hidden">
+      <section className="py-14 bg-gradient-to-b from-white to-blue-50 relative overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="max-w-6xl mx-auto">
             <AnimatedSection>
-              <h2 className="text-4xl font-bold text-center text-gray-800 mb-16 relative z-10">
-                Our <span className="text-red-600">Expertise</span>
+              <h2 className="text-2xl md:text-3xl font-semibold text-center text-slate-950 mb-10 relative z-10">
+                Our <span className="text-[#075eb3]">Expertise</span>
               </h2>
             </AnimatedSection>
 
@@ -250,20 +250,20 @@ const About = () => {
               {/* Left Text Content */}
               <AnimatedSection>
                 <div className="h-full space-y-6 bg-white rounded-xl shadow-lg p-8 flex flex-col">
-                  <p className="text-lg text-gray-700 leading-relaxed">
+                  <p className="text-base text-slate-700 leading-relaxed">
                     Our manufacturing facility sets the gold standard for
                     quality and innovation. From “high-purity imported minerals”
                     to “proprietary binders,” every component is selected for
                     excellence.
                   </p>
-                  <p className="text-lg text-gray-700 leading-relaxed">
+                  <p className="text-base text-slate-700 leading-relaxed">
                     With McGlasgo's scientific backing, our labs ensure
                     “rigorous multi-phase testing,” certifying “unmatched
                     reliability” and “high performance” in every wall care
                     product.
                   </p>
                   <div className="mt-6 border-t pt-6 flex-grow flex items-end">
-                    <p className="font-semibold text-red-500">
+                    <p className="font-semibold text-[#075eb3]">
                       “Built on science.” “Driven by innovation.” “Trusted
                       across India.”
                     </p>
@@ -273,12 +273,12 @@ const About = () => {
 
               {/* Right Highlight Card */}
               <AnimatedSection delay={0.3}>
-                <div className="h-full bg-gradient-to-br from-yellow-300 via-orange-400 to-red-500 rounded-3xl p-10 shadow-xl transform hover:scale-[1.02] transition-transform flex flex-col">
+                <div className="h-full bg-gradient-to-br from-[#075eb3] via-[#0b74c8] to-[#0a3f88] rounded-xl p-8 shadow-lg transform hover:-translate-y-1 transition-transform flex flex-col">
                   <div className="flex items-center space-x-4 mb-6">
-                    <div className="bg-red-700 text-white p-3 rounded-full shadow-md">
+                    <div className="bg-white/15 text-white p-3 rounded-lg shadow-md">
                       <Zap className="w-6 h-6" />
                     </div>
-                    <h4 className="text-2xl font-bold text-white drop-shadow-md">
+                    <h4 className="text-xl font-semibold text-white drop-shadow-md">
                       Innovation & Research
                     </h4>
                   </div>
@@ -297,15 +297,15 @@ const About = () => {
 
         {/* Decorative Elements */}
         <div className="absolute -top-10 -right-10 w-64 h-64 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
-        <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-red-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-2000"></div>
+        <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse delay-2000"></div>
       </section>
-      <section className="py-16 bg-white">
+      <section className="py-14 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Our <span className="text-[#E63946]">Team </span>
+            <h2 className="text-2xl md:text-3xl font-semibold mb-3 text-slate-950">
+              Our <span className="text-[#075eb3]">Team </span>
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-base text-slate-600">
               Leadership That Drives Innovation
             </p>
           </div>
@@ -314,22 +314,22 @@ const About = () => {
             {teamMembers.map((member, index) => (
               <div
                 key={index}
-                className="animate-on-scroll bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="animate-on-scroll bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
                 style={{ transitionDelay: `${index * 0.1}s` }}
               >
-                <div className="relative">
+                <div className="relative h-64 bg-slate-100">
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="w-full h-64 object-cover"
+                    className="h-full w-full object-contain"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2 text-gray-800">
+                  <h3 className="text-lg font-semibold mb-2 text-slate-950">
                     {member.name}
                   </h3>
-                  <p className="text-red-600 font-medium mb-3">
+                  <p className="text-[#075eb3] font-medium mb-3">
                     {member.position}
                   </p>
                   <div className="flex items-center text-gray-500">
@@ -341,13 +341,13 @@ const About = () => {
             ))}
           </div>
 
-          <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8">
+          <div className="bg-gradient-to-r from-blue-50 to-white rounded-xl border border-blue-100 p-8 shadow-sm">
             <div className="text-center mb-8">
               <Award className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-              <h3 className="text-2xl font-bold mb-4">Scientific Backing</h3>
+              <h3 className="text-xl font-semibold mb-4 text-slate-950">Scientific Backing</h3>
             </div>
             <div className="max-w-4xl mx-auto">
-              <p className="text-lg text-gray-700 text-center leading-relaxed">
+              <p className="text-base text-slate-700 text-center leading-relaxed">
                 Backed by world-renowned scientists and skilled professionals
                 from <strong>McGlasgo Research Centre</strong>, we bring a
                 strong scientific foundation to every product and process we
@@ -359,31 +359,31 @@ const About = () => {
           </div>
         </div>
       </section>
-      <section className="py-16 bg-gray-50">
+      <section className="py-14 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Our <span className="text-[#E63946]">Values </span>
+            <h2 className="text-2xl md:text-3xl font-semibold mb-3 text-slate-950">
+              Our <span className="text-[#075eb3]">Values </span>
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-base text-slate-600">
               The principles that guide everything we do
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="animate-on-scroll bg-white p-6 rounded-xl shadow-lg text-center hover:shadow-xl transition-all duration-300">
-              <Target className="w-12 h-12 text-red-600 mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-3">Innovation</h3>
+            <div className="animate-on-scroll bg-white p-6 rounded-xl border border-blue-100 shadow-sm text-center hover:shadow-md transition-all duration-300">
+              <Target className="w-10 h-10 text-[#075eb3] mx-auto mb-4" />
+              <h3 className="text-lg font-semibold mb-3">Innovation</h3>
               <p className="text-gray-600">
                 Continuously pushing boundaries in construction technology and
                 materials science.
               </p>
             </div>
             <div
-              className="animate-on-scroll bg-white p-6 rounded-xl shadow-lg text-center hover:shadow-xl transition-all duration-300"
+              className="animate-on-scroll bg-white p-6 rounded-xl border border-blue-100 shadow-sm text-center hover:shadow-md transition-all duration-300"
               style={{ transitionDelay: "0.1s" }}
             >
-              <Heart className="w-12 h-12 text-yellow-500 mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-3">Integrity</h3>
+              <Heart className="w-10 h-10 text-[#075eb3] mx-auto mb-4" />
+              <h3 className="text-lg font-semibold mb-3">Integrity</h3>
               <p className="text-gray-600">
                 Built on the foundation of honesty, transparency, and ethical
                 business practices.
@@ -391,11 +391,11 @@ const About = () => {
             </div>
 
             <div
-              className="animate-on-scroll bg-white p-6 rounded-xl shadow-lg text-center hover:shadow-xl transition-all duration-300"
+              className="animate-on-scroll bg-white p-6 rounded-xl border border-blue-100 shadow-sm text-center hover:shadow-md transition-all duration-300"
               style={{ transitionDelay: "0.2s" }}
             >
-              <Star className="w-12 h-12 text-red-600 mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-3">Excellence</h3>
+              <Star className="w-10 h-10 text-[#075eb3] mx-auto mb-4" />
+              <h3 className="text-lg font-semibold mb-3">Excellence</h3>
               <p className="text-gray-600">
                 Committed to delivering superior quality in every product and
                 service we offer.
@@ -403,11 +403,11 @@ const About = () => {
             </div>
 
             <div
-              className="animate-on-scroll bg-white p-6 rounded-xl shadow-lg text-center hover:shadow-xl transition-all duration-300"
+              className="animate-on-scroll bg-white p-6 rounded-xl border border-blue-100 shadow-sm text-center hover:shadow-md transition-all duration-300"
               style={{ transitionDelay: "0.3s" }}
             >
-              <Building2 className="w-12 h-12 text-yellow-500 mx-auto mb-4" />
-              <h3 className="text-xl font-bold mb-3">Legacy</h3>
+              <Building2 className="w-10 h-10 text-[#075eb3] mx-auto mb-4" />
+              <h3 className="text-lg font-semibold mb-3">Legacy</h3>
               <p className="text-gray-600">
                 Honoring our founder's vision while building for future
                 generations.
@@ -416,17 +416,17 @@ const About = () => {
           </div>
         </div>
       </section>
-      <section className="py-20 bg-green-50">
-        <h2 className="text-4xl font-bold text-center text-gray-800 mb-16 relative z-10">
-          Built for a <span className="text-red-600">Better Tomorrow</span>
+      <section className="py-14 bg-white">
+        <h2 className="text-2xl md:text-3xl font-semibold text-center text-slate-950 mb-10 relative z-10">
+          Built for a <span className="text-[#075eb3]">Better Tomorrow</span>
         </h2>{" "}
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
             <AnimatedSection>
               <div className="flex h-full">
-                <div className="bg-white rounded-2xl shadow-lg p-8 flex flex-col">
-                  <Leaf className="w-12 h-12 text-green-600 mb-6" />
-                  <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                <div className="bg-white rounded-xl border border-blue-100 shadow-md p-8 flex flex-col">
+                  <Leaf className="w-10 h-10 text-[#075eb3] mb-6" />
+                  <h3 className="text-xl font-semibold text-slate-950 mb-4">
                     Commitment to Sustainability
                   </h3>
                   <p className="text-gray-700 leading-relaxed">
@@ -445,9 +445,9 @@ const About = () => {
 
             <AnimatedSection delay={0.2}>
               <div className="flex h-full">
-                <div className="bg-white rounded-2xl shadow-lg p-8 flex flex-col">
-                  <Users className="w-12 h-12 text-blue-600 mb-6" />
-                  <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                <div className="bg-white rounded-xl border border-blue-100 shadow-md p-8 flex flex-col">
+                  <Users className="w-10 h-10 text-[#075eb3] mb-6" />
+                  <h3 className="text-xl font-semibold text-slate-950 mb-4">
                     Customer-Centric Approach
                   </h3>
                   <p className="text-gray-700 leading-relaxed mb-4">

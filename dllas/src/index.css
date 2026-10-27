@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+html {
+  font-family: "Noto Sans", "Noto Sans Tamil", Arial, sans-serif;
+}
+
+body {
+  font-family: "Noto Sans", "Noto Sans Tamil", Arial, sans-serif;
+  background-color: #f9fafb;
+  color: #333333;
+}
+.swiper-button-prev,
+.swiper-button-next {
+  width: 15px;
+  height: 15px;
+  color: #ff0000;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 15px !important;
+  color: #ff0000;
+  font-weight: 900;
+  /* background-color: white; */
+  padding: 5px;
+  border-radius: 100%;
+}
+
+/* All bullets */
+.swiper-pagination-bullet {
+  background-color: #f87171 !important; /* Tailwind's red-400 or choose any red */
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+/* Active bullet */
+.swiper-pagination-bullet-active {
+  background-color: #dc2626 !important; /* Tailwind's red-600 or custom red */
+  opacity: 1;
+}
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+.marquee {
+  animation: marquee 15s linear infinite;
+  white-space: nowrap;
+  display: inline-block;
+}
+.marquee-container {
+  overflow: hidden;
+  width: 100%;
+}
+

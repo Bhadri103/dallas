@@ -19,6 +19,8 @@ import {
   Calendar,
 } from "lucide-react";
 import CustomerReviews from "../components/CustomerReviews";
+import PageBanner from "../components/PageBanner";
+import bannerImage from "../images/Banner.png";
 
 // Interfaces for data structures
 interface Testimonial {
@@ -273,9 +275,9 @@ const Testimonials: React.FC = () => {
           const windowHeight =
             window.innerHeight || document.documentElement.clientHeight;
 
-          if (rect.top <= windowHeight * 0.75) {
-            el.classList.add("visible");
-          }
+          const isVisible =
+            rect.top <= windowHeight * 0.85 && rect.bottom >= windowHeight * 0.1;
+          el.classList.toggle("visible", isVisible);
         }
       });
     };
@@ -312,22 +314,31 @@ const Testimonials: React.FC = () => {
         key={i}
         size={16}
         className={`${
-          i < rating ? "text-yellow-400 fill-current" : "text-gray-300"
+          i < rating ? "text-[#f5b301] fill-current" : "text-gray-300"
         }`}
       />
     ));
   };
 
   return (
-    <div className="bg-gray-50 min-h-screen">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div className="bg-white min-h-screen">
+      <PageBanner
+        eyebrow="TESTIMONIALS"
+        title="Customer Reviews and Project Success Stories"
+        description="See how Dallas Wallcare products and services perform across homes, commercial buildings, and technical projects."
+        image={bannerImage}
+        imageAlt="Dallas Wallcare testimonials banner"
+      />
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <CustomerReviews />
+
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Client<span className="text-[#E63946]"> Success Stories</span>
+          <h2 className="text-2xl md:text-3xl font-semibold mb-3 text-slate-950">
+            Client<span className="text-[#075eb3]"> Success Stories</span>
           </h2>
-          <p className="text-xl text-gray-600">
+          <p className="text-base text-slate-600">
             Trusted by over{" "}
-            <span className="text-red-600 font-semibold">15,000 clients</span>,
+            <span className="text-[#075eb3] font-semibold">15,000 clients</span>,
             Dallas Wallcare delivers lasting waterproofing solutions for all
             buildings.
           </p>
@@ -338,9 +349,9 @@ const Testimonials: React.FC = () => {
             {projectStats.map((stat, index) => (
               <div
                 key={index}
-                className="animate-on-scroll bg-white p-6 rounded-lg shadow-lg"
+                className="animate-on-scroll bg-white p-6 rounded-xl border border-blue-100 shadow-sm"
               >
-                <div className="text-3xl font-bold text-red-600 mb-2">
+                <div className="text-2xl font-semibold text-[#075eb3] mb-2">
                   {stat.number}
                 </div>
                 <div className="text-gray-600 font-medium">{stat.label}</div>
@@ -441,7 +452,6 @@ const Testimonials: React.FC = () => {
             </div>
           </div>
         </section> */}
-        <CustomerReviews />
         {/* <section className="mb-20">
           <h2 className="text-3xl font-bold text-center mb-12 text-gray-800">
             Detailed Case Studies
@@ -562,21 +572,21 @@ const Testimonials: React.FC = () => {
         {/* Key Benefits Section */}
         <section className="mb-20 mt-6">
           <div className="text-center mb-5">
-            <h2 className="text-4xl font-bold text-center text-gray-800 relative z-10">
+            <h2 className="text-2xl md:text-3xl font-semibold text-center text-slate-950 relative z-10">
               Why Clients Prefer{" "}
-              <span className="text-red-600">Dallas Wallcare</span>
+              <span className="text-[#075eb3]">Dallas Wallcare</span>
             </h2>{" "}
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {keyBenefits.map((benefit, index) => (
               <div
                 key={index}
-                className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow"
+                className="bg-white p-6 rounded-xl border border-blue-100 shadow-sm hover:shadow-md transition-shadow"
               >
-                <div className="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mb-4">
-                  <benefit.icon size={32} className="text-red-600" />
+                <div className="bg-blue-50 w-14 h-14 rounded-lg flex items-center justify-center mb-4">
+                  <benefit.icon size={28} className="text-[#075eb3]" />
                 </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-3">
+                <h3 className="text-lg font-semibold text-slate-950 mb-3">
                   {benefit.title}
                 </h3>
                 <p className="text-gray-600 mb-4">{benefit.description}</p>

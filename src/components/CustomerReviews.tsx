@@ -63,9 +63,9 @@ const CustomerReviews = () => {
         const windowHeight =
           window.innerHeight || document.documentElement.clientHeight;
 
-        if (rect.top <= windowHeight * 0.75) {
-          el.classList.add("visible");
-        }
+          const isVisible =
+            rect.top <= windowHeight * 0.85 && rect.bottom >= windowHeight * 0.1;
+          el.classList.toggle("visible", isVisible);
       });
     };
 
@@ -113,7 +113,7 @@ const CustomerReviews = () => {
     return Array.from({ length: 5 }, (_, i) => (
       <span
         key={i}
-        className={`text-lg ${i < rating ? "text-yellow-400" : "text-gray-300"}`}
+        className={`text-lg ${i < rating ? "text-[#f5b301]" : "text-gray-300"}`}
       >
         ⭐
       </span>
@@ -250,8 +250,8 @@ const CustomerReviews = () => {
         .service-badge {
           display: inline-block;
           padding: 4px 12px;
-          background: linear-gradient(135deg, #fef3c7, #fee2e2);
-          color: #dc2626;
+          background: linear-gradient(135deg, #dbeafe, #eff6ff);
+          color: #075eb3;
           border-radius: 20px;
           font-size: 0.75rem;
           font-weight: 600;
@@ -273,10 +273,10 @@ const CustomerReviews = () => {
       `}</style>
 
       <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold text-center text-gray-800 relative z-10">
-          Customer <span className="text-red-600">Reviews</span>
+        <h2 className="text-2xl md:text-3xl font-semibold text-center text-slate-950 relative z-10">
+          Customer <span className="text-[#075eb3]">Reviews</span>
         </h2> 
-        <p className="text-gray-600 mt-4 text-lg max-w-2xl mx-auto">
+        <p className="text-slate-600 mt-3 text-base max-w-2xl mx-auto">
           Hear what our satisfied customers have to say about our waterproofing
           services
         </p>
@@ -309,7 +309,7 @@ const CustomerReviews = () => {
 
             <div className="p-6">
               <div className="flex items-center justify-between mb-3">
-                <h3 className="  text-red-500 text-lg font-bold">
+                <h3 className="text-[#075eb3] text-lg font-semibold">
                   {review.customerName}
                 </h3>
                 <div className="flex">{renderStars(review.rating)}</div>
@@ -346,7 +346,7 @@ const CustomerReviews = () => {
       {selectedVideo && (
         <div className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center p-4">
           <button
-            className="absolute top-4 right-4 text-white text-4xl hover:text-yellow-400 transition-colors duration-200 z-10"
+            className="absolute top-4 right-4 text-white text-3xl hover:text-blue-300 transition-colors duration-200 z-10"
             onClick={() => setSelectedVideo(null)}
           >
             ×

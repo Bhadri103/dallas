@@ -15,6 +15,7 @@ import {
   Table, // Added for the comparison table section header
 } from "lucide-react";
 import { allProducts } from "../data/productsData"; // Ensure productsData is correctly imported
+import PageBanner from "../components/PageBanner";
 
 // Define contact number for WhatsApp and Call
 const contactNumber = "+9199942 55808"; // Replace with your actual phone number
@@ -119,16 +120,16 @@ const ProductDetailsPage = () => {
   }, [productId]);
   if (!selectedProduct) {
     return (
-      <div className="text-center py-20 bg-gray-50 min-h-screen">
-        <h2 className="text-3xl font-bold text-gray-700 mb-4">
+      <div className="text-center py-20 bg-white min-h-screen">
+        <h2 className="text-2xl font-semibold text-slate-950 mb-4">
           Product Not Found
         </h2>
-        <p className="text-lg text-gray-600 mb-6">
+        <p className="text-base text-slate-600 mb-6">
           The product you are looking for does not exist.
         </p>
         <button
           onClick={() => navigate("/products")}
-          className="inline-flex items-center bg-red-600 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-red-700 transition-colors shadow-lg"
+          className="inline-flex items-center bg-[#075eb3] text-white px-6 py-3 rounded-lg text-sm font-semibold hover:bg-[#064f9c] transition-colors shadow-lg"
         >
           <ArrowLeft className="w-5 h-5 mr-2" />
           Back to Products List
@@ -153,7 +154,7 @@ const ProductDetailsPage = () => {
     return (
       <div className="p-6 rounded-lg mb-6">
         <h4 className="font-semibold text-xl text-gray-800 mb-3 flex items-center">
-          <Star className="w-5 h-5 mr-2 text-yellow-700" />
+          <Star className="w-5 h-5 mr-2 text-[#075eb3]" />
           Product Overview
         </h4>
         <ul className="list-none text-gray-700 space-y-2">
@@ -219,7 +220,7 @@ const ProductDetailsPage = () => {
                       } else if (value === "No") {
                         displayContent = (
                           <XCircle
-                            className="w-5 h-5 text-red-500 mx-auto"
+                            className="w-5 h-5 text-[#075eb3] mx-auto"
                             title={value}
                           />
                         );
@@ -240,7 +241,7 @@ const ProductDetailsPage = () => {
                       } else if (value === "Low" || value.includes("Low (")) {
                         // Handle "Low"
                         displayContent = (
-                          <span className="text-red-600 font-medium">
+                          <span className="text-[#075eb3] font-medium">
                             {value}
                           </span>
                         );
@@ -269,22 +270,35 @@ const ProductDetailsPage = () => {
     );
   };
   return (
-    <div className="container mx-auto px-4 py-8 bg-gray-50 min-h-screen">
+    <div className="bg-white min-h-screen">
+      <PageBanner
+        eyebrow={selectedProduct.category || "PRODUCT DETAILS"}
+        title={selectedProduct.name}
+        description={
+          selectedProduct.productTagline ||
+          selectedProduct.tagline ||
+          "Technical details, application guidance, and product specifications."
+        }
+        image={selectedProduct.detailsImage || selectedProduct.image}
+        imageAlt={`${selectedProduct.name} banner`}
+        imageFit="contain"
+      />
+      <div className="container mx-auto px-4 py-8">
       <button
         onClick={() => navigate("/products")}
-        className="inline-flex items-center text-red-600 hover:text-red-800 mb-8 font-semibold"
+        className="inline-flex items-center text-[#075eb3] hover:text-[#064f9c] mb-8 font-semibold"
       >
         <ArrowLeft className="w-5 h-5 mr-2" />
         Back to Products
       </button>
 
-      <div className="bg-white rounded-2xl shadow-xl overflow-hidden p-8 mb-8">
+      <div className="bg-white rounded-xl border border-blue-100 shadow-[0_14px_40px_rgba(7,94,179,0.08)] overflow-hidden p-6 md:p-8 mb-8">
         {selectedProduct.category && (
           <div className="mb-4">
-            <h1 className="text-3xl font-extrabold text-red-600 underline text-center mb-2 tracking-wide">
+            <h1 className="text-2xl md:text-3xl font-semibold text-[#075eb3] text-center mb-2 tracking-wide">
               {selectedProduct.category.toUpperCase()}{" "}
             </h1>
-            <p className="text-xl text-gray-600 mt-2 text-center">
+            <p className="text-base text-slate-600 mt-2 text-center">
               {selectedProduct.tagline}
             </p>
           </div>
@@ -313,7 +327,7 @@ const ProductDetailsPage = () => {
                 {selectedProduct.category.toUpperCase()}{" "}
               </h1> */}
               {!selectedProduct.detailsImage && (
-                <h2 className="text-3xl sm:text-2xl font-bold text-start text-gray-800 mb-2">
+                <h2 className="text-xl sm:text-2xl font-semibold text-start text-slate-950 mb-2">
                   {selectedProduct.name}
                 </h2>
               )}
@@ -330,8 +344,8 @@ const ProductDetailsPage = () => {
           <div className="lg:w-3/5  bg-white rounded-lg h-full flex flex-col">
             {selectedProduct.flexibleServiceOptions && (
               <>
-                <h5 className="font-semibold text-xl mb-4 flex items-center">
-                  <Layers className="w-5 h-5 mr-2 text-indigo-700" />
+                <h5 className="font-semibold text-xl mb-4 flex items-center text-slate-950">
+                  <Layers className="w-5 h-5 mr-2 text-[#075eb3]" />
                   Flexible Service Options to Suit Your Needs
                 </h5>
                 <div className="space-y-6 flex-grow">
@@ -355,7 +369,7 @@ const ProductDetailsPage = () => {
                       <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                         <a
                           href={callLink}
-                          className="flex items-center justify-center w-full sm:w-auto px-4 py-2 bg-red-600 text-white rounded-full hover:bg-red-700 transition-colors font-semibold"
+                          className="flex items-center justify-center w-full sm:w-auto px-4 py-2 bg-[#075eb3] text-white rounded-lg hover:bg-[#064f9c] transition-colors font-semibold"
                         >
                           <Phone className="w-5 h-5 mr-2" />
                           Call Us
@@ -364,7 +378,7 @@ const ProductDetailsPage = () => {
                           href={whatsappLink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center justify-center w-full sm:w-auto px-4 py-2 bg-green-500 text-white rounded-full hover:bg-green-600 transition-colors font-semibold"
+                          className="flex items-center justify-center w-full sm:w-auto px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors font-semibold"
                         >
                           <MessageSquare className="w-5 h-5 mr-2" />
                           WhatsApp
@@ -381,9 +395,9 @@ const ProductDetailsPage = () => {
 
       <div className="space-y-8">
         {selectedProduct.benefits && (
-          <div className="p-6 bg-white rounded-lg shadow-md">
-            <h4 className="font-semibold text-xl text-gray-800 mb-3 flex items-center">
-              <Star className="w-5 h-5 mr-2 text-yellow-700" />
+          <div className="p-6 bg-white rounded-xl border border-blue-100 shadow-sm">
+            <h4 className="font-semibold text-xl text-slate-950 mb-3 flex items-center">
+              <Star className="w-5 h-5 mr-2 text-[#075eb3]" />
               Key Features
             </h4>
             <ul className="list-disc list-inside text-gray-700 space-y-2">
@@ -398,9 +412,9 @@ const ProductDetailsPage = () => {
         )}
 
         {selectedProduct.applicationSteps && (
-          <div className="p-6 bg-white rounded-lg shadow-md">
-            <h5 className="font-semibold text-xl mb-4 flex items-center">
-              <Brush className="w-5 h-5 mr-2 text-green-700" />
+          <div className="p-6 bg-white rounded-xl border border-blue-100 shadow-sm">
+            <h5 className="font-semibold text-xl mb-4 flex items-center text-slate-950">
+              <Brush className="w-5 h-5 mr-2 text-[#075eb3]" />
               Application Steps
             </h5>
             <ol className="list-decimal list-inside text-gray-700 space-y-2">
@@ -413,13 +427,13 @@ const ProductDetailsPage = () => {
 
         {selectedProduct.hasTechData &&
           selectedProduct.techData && ( // Check if techData exists
-            <div className="p-6 bg-white rounded-lg shadow-md">
+            <div className="p-6 bg-white rounded-xl border border-blue-100 shadow-sm">
               <TechnicalDataTable data={selectedProduct.techData} />
             </div>
           )}
         {selectedProduct.comparisonTable && renderComparisonTable()}
         {selectedProduct.brochures && selectedProduct.brochures.length > 0 && (
-          <div className="p-6 bg-white rounded-lg shadow-md">
+          <div className="p-6 bg-white rounded-xl border border-blue-100 shadow-sm">
             <h5 className="font-semibold text-xl mb-4 flex items-center">
               <Download className="w-5 h-5 mr-2 text-blue-700" />
               Download Product Brochure
@@ -432,7 +446,7 @@ const ProductDetailsPage = () => {
           download
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center px-2 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors font-medium text-center shadow-md text-sm"
+          className="flex items-center justify-center px-2 py-2 bg-[#075eb3] text-white rounded-lg hover:bg-[#064f9c] transition-colors font-medium text-center shadow-md text-sm"
         >
           <Download className="w-3 h-3 mr-1 text-white" />{" "}
           {brochure.language} Brochure
@@ -441,6 +455,7 @@ const ProductDetailsPage = () => {
 </div>  
           </div>
         )}
+      </div>
       </div>
     </div>
   );
